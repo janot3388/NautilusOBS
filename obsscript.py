@@ -6,7 +6,7 @@ import subprocess
 def script_update(context, settings):
     context = obs.context()
     settings = obs.obs_data_create()
-    obs.obs_get_source_by_name("your_recording_source_name", settings, context)
+    obs.obs_get_source_by_name("NOME_DA_SOURCE_DA_GRAVAÇÃO", settings, context)
     if obs.obs_source_active(settings):
         pass
     else:
@@ -19,7 +19,7 @@ def script_update(context, settings):
             create_folders()
 
 def compress_recordings():
-    root_path = "path/to/your/recordings"
+    root_path = "DIRETÓRIO_DAS_GRAVAÇÕES"
     for file in os.listdir(root_path):
         if file.endswith(".mp4"):
             input_file = os.path.join(root_path, file)
@@ -28,7 +28,7 @@ def compress_recordings():
             os.remove(input_file)
             
 def move_and_rename_recordings():
-    root_path = "path/to/your/recordings"
+    root_path = "DIRETÓRIO_DAS_GRAVAÇÕES"
     for file in os.listdir(root_path):
         if file.startswith("compressed_"):
             current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -44,7 +44,7 @@ def move_and_rename_recordings():
             os.rename(source_path, destination_path)
 
 def delete_old_recordings():
-    root_path = "path/to/your/recordings"
+    root_path = "DIRETÓRIO_DAS_GRAVAÇÕES"
     total_size = 0
     for path, dirs, files in os.walk(root_path):
         for f in files:
@@ -58,7 +58,7 @@ def delete_old_recordings():
                 os.remove(file_path)
                 
 def create_folders():
-    root_path = "path/to/your/recordings"
+    root_path = "DIRETÓRIO_DAS_GRAVAÇÕES"
     current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     year_path = os.path.join(root_path, current_time.strftime("%Y"))
     month_path = os.path.join(year_path, current_time.strftime("%m"))
